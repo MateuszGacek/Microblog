@@ -1,0 +1,41 @@
+.post-container {
+  margin: 25px auto;
+  padding: 15px;
+  min-width: 300px;
+  max-width: 1080px;
+  border: 1px solid #ff6d2a;
+  border-radius: 15px;
+}
+
+.post-title,
+.post-description {
+  display: flex;
+  justify-content: center;
+}
+.post-title {
+  margin-bottom: 15px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-vote-container {
+  display: flex;
+}
+
+.btn-delete-post {
+  padding: 8px;
+  background-color: rgb(78, 51, 255);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  transition: background-color 0.3s ease;
+}
+.btn-delete-post:hover {
+  background-color: rgba(255, 0, 0, 0.633);
+}

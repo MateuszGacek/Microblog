@@ -1,0 +1,25 @@
+.btn-controler {
+  display: flex;
+}
+.btn-icon {
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  width: 45px;
+  height: 45px;
+  border-color: transparent;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.btn-icon:hover {
+  background-color: antiquewhite;
+}
+.btn-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+}
