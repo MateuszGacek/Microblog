@@ -1,10 +1,9 @@
 export type SinglePostProps = {
-  key: number;
   title: string;
   description: string;
-  onDeleteClick: () => void;
-  onLikeClick: () => void;
-  onUnlikeClick: () => void;
+  onDelete: () => void;
+  onLike: () => void;
+  onUnlike: () => void;
   like: number;
   unlike: number;
 };

@@ -1,9 +1,8 @@
 import { useState } from "react";
-
-import data from "../../store/data.json";
 import SinglePost from "../singlePost/SinglePost";
 import NumberOfPosts from "../numberOfPost/NumberOfPosts";
 import CreateNewPost from "../createNewPost/CreateNewPost";
+import data from "../../store/data.json";
 import { Post } from "../../models/Post.model";
 import { notifyUser } from "../../utils/notifyUser";
 import "./postsList.css";
@@ -11,14 +10,15 @@ import "./postsList.css";
 const PostsList: React.FC = () => {
   const [postsList, setPostsList] = useState<Post[]>(data);
 
-  const deletePostHandler = (postId: number): void => {
+  const deletePost = (postId: number) => {
     setPostsList((prevPosts) => {
       return prevPosts.filter((prevPost) => prevPost.id !== postId);
     });
   };
 
-  const addPostHandler = (title: string, description: string): void => {
+  const addPost = (title: string, description: string) => {
     const createPost: Post = {
+      // I know it's not allowed, sorry for the ID from increment + random
       id: postsList.length + 1 + Math.random(),
       title: title,
       description: description,
@@ -29,26 +29,22 @@ const PostsList: React.FC = () => {
     notifyUser();
   };
 
-  const postLikeHandler = (postId: number): void => {
-    let newValue: Post[] = postsList.map((post) => {
+  const postLike = (postId: number) => {
+    const newValue: Post[] = postsList.map((post) => {
       if (post.id === postId) {
-        ++post.like;
-        return post;
-      } else {
-        return post;
+        return { ...post, like: (post.like += 1) };
       }
+      return post;
     });
     setPostsList(newValue);
   };
 
-  const postUnlikeHandler = (postId: number): void => {
-    let newValue: Post[] = postsList.map((post) => {
+  const postUnlike = (postId: number) => {
+    const newValue: Post[] = postsList.map((post) => {
       if (post.id === postId) {
-        --post.unlike;
-        return post;
-      } else {
-        return post;
+        return { ...post, unlike: (post.unlike -= 1) };
       }
+      return post;
     });
     setPostsList(newValue);
   };
@@ -61,18 +57,15 @@ const PostsList: React.FC = () => {
       {postsList.map((post) => {
         return (
           <SinglePost
+            {...post}
             key={post.id}
-            title={post.title}
-            description={post.description}
-            onDeleteClick={() => deletePostHandler(post.id)}
-            onLikeClick={() => postLikeHandler(post.id)}
-            onUnlikeClick={() => postUnlikeHandler(post.id)}
-            like={post.like}
-            unlike={post.unlike}
+            onDelete={() => deletePost(post.id)}
+            onLike={() => postLike(post.id)}
+            onUnlike={() => postUnlike(post.id)}
           />
         );
       })}
-      <CreateNewPost onSubmit={addPostHandler} />
+      <CreateNewPost onSubmit={addPost} />
     </div>
   );
 };

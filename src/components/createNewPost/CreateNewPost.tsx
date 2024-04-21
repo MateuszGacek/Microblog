@@ -7,40 +7,42 @@ const CreateNewPost: React.FC<CreateNewPostProps> = ({ onSubmit }) => {
   const [showModal, setShowModal] = useState(false);
   const [showTitleError, setShowTitleError] = useState(false);
   const [showDescriptionError, setShowDescriptionError] = useState(false);
-  const [newPostTitle, setNewPostTitle] = useState("");
-  const [newPostDescription, setNewPostDescription] = useState("");
-  const closeModalHandle = () => {
+  const [postTitle, setPostTitle] = useState("");
+  const [postDescription, setPostDescription] = useState("");
+
+  const closeModal = () => {
     setShowModal(false);
-    setNewPostTitle("");
-    setNewPostDescription("");
+    setPostTitle("");
+    setPostDescription("");
   };
 
-  const openModalHandle = () => {
+  const openModal = () => {
     setShowModal(true);
   };
-  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setNewPostTitle(e.target.value);
+
+  const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPostTitle(e.target.value);
   };
-  const textareaChangeHandler = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ): void => {
-    setNewPostDescription(e.target.value);
+
+  const textareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setPostDescription(e.target.value);
   };
+
   const onSubmitHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    if (!newPostTitle) {
+    if (!postTitle) {
       setShowTitleError(true);
       return;
     }
     setShowTitleError(false);
-    if (!newPostDescription) {
+    if (!postDescription) {
       setShowDescriptionError(true);
       return;
     }
     setShowDescriptionError(false);
-    if (newPostTitle && newPostDescription) {
-      onSubmit(newPostTitle, newPostDescription);
-      closeModalHandle();
+    if (postTitle && postDescription) {
+      onSubmit(postTitle, postDescription);
+      closeModal();
     }
   };
   return (
@@ -48,7 +50,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = ({ onSubmit }) => {
       <div className={`modal-container ${showModal ? "active" : ""}`}>
         <form className="modal-form" onSubmit={onSubmitHandler}>
           <div className="modal-btn-controler">
-            <button type="button" onClick={closeModalHandle}>
+            <button type="button" onClick={closeModal}>
               Close
             </button>
           </div>
@@ -57,11 +59,11 @@ const CreateNewPost: React.FC<CreateNewPostProps> = ({ onSubmit }) => {
               Enter a title for the post:
             </label>
             <input
-              value={newPostTitle}
+              value={postTitle}
               type="text"
               className="modal-input"
               id="new-post-title"
-              onChange={inputChangeHandler}
+              onChange={inputChange}
             ></input>
             <p className={`modal-error ${showTitleError ? "active" : ""}`}>
               Please enter a title
@@ -72,8 +74,8 @@ const CreateNewPost: React.FC<CreateNewPostProps> = ({ onSubmit }) => {
               Enter the content of the article:
             </label>
             <textarea
-              onChange={textareaChangeHandler}
-              value={newPostDescription}
+              onChange={textareaChange}
+              value={postDescription}
               className="modal-textarea"
               id="new-post-description"
             ></textarea>
@@ -91,7 +93,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = ({ onSubmit }) => {
       <button
         type="button"
         className="btn-active-modal"
-        onClick={openModalHandle}
+        onClick={openModal}
       ></button>
     </>
   );
