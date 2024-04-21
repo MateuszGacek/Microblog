@@ -1,10 +1,10 @@
-import { singlePost } from "../models/singlePost.model";
-import IconButton from "./ui/IconButton";
-import unLikeIcon from "../assets/dislike.png";
-import likeIcon from "../assets/like.png";
-import "./SinglePost.css";
+import { SinglePostProps } from "../../models/SinglePostProps";
+import IconButton from "../ui/IconButton";
+import unLikeIcon from "../../assets/dislike.png";
+import likeIcon from "../../assets/like.png";
+import "./singlePost.css";
 
-const SinglePost: React.FC<singlePost> = ({
+const SinglePost: React.FC<SinglePostProps> = ({
   title,
   description,
   onDeleteClick,

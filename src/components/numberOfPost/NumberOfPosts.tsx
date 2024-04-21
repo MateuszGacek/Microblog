@@ -1,6 +1,6 @@
-import { numberOfPostsProps } from "../models/numberOfPostsProps";
+import { NumberOfPostsProps } from "../../models/NumberOfPostsProps";
 
-const NumberOfPostTitle: React.FC<numberOfPostsProps> = ({ numberOfPosts }) => {
+const NumberOfPosts: React.FC<NumberOfPostsProps> = ({ numberOfPosts }) => {
   return (
     <h2>
       {numberOfPosts === 0
@@ -11,4 +11,4 @@ const NumberOfPostTitle: React.FC<numberOfPostsProps> = ({ numberOfPosts }) => {
   );
 };
 
-export default NumberOfPostTitle;
+export default NumberOfPosts;

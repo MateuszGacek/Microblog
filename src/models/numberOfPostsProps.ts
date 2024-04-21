@@ -1,3 +1,3 @@
-export type numberOfPostsProps = {
+export type NumberOfPostsProps = {
   numberOfPosts: number;
 };

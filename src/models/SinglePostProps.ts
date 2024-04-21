@@ -1,4 +1,4 @@
-export type singlePost = {
+export type SinglePostProps = {
   key: number;
   title: string;
   description: string;

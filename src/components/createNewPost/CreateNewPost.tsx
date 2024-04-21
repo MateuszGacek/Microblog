@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { createNewPostProps } from "../models/createNewPostProps";
-import "./CreateNewPost.css";
+import { CreateNewPostProps } from "../../models/CreateNewPostProps";
+import "./createNewPost.css";
 
-const CreateNewPost: React.FC<createNewPostProps> = ({ onSubmit }) => {
+const CreateNewPost: React.FC<CreateNewPostProps> = ({ onSubmit }) => {
   const [showModal, setShowModal] = useState(false);
   const [showTitleError, setShowTitleError] = useState(false);
   const [showDescriptionError, setShowDescriptionError] = useState(false);

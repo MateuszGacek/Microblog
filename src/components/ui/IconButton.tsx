@@ -1,7 +1,7 @@
-import { iconButtonProps } from "../../models/iconButtonProps";
-import "./IconButton.css";
+import { IconButtonProps } from "../../models/IconButtonProps";
+import "./iconButton.css";
 
-const IconButton: React.FC<iconButtonProps> = ({
+const IconButton: React.FC<IconButtonProps> = ({
   onClick,
   numberOfLike,
   icon,

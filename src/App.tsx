@@ -1,4 +1,4 @@
-import PostsList from "./components/PostsList";
+import PostsList from "./components/postsList/PostsList";
 
 const App: React.FC = () => {
   return (

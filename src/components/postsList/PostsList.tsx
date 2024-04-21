@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-import data from "../store/data.json";
-import SinglePost from "./SinglePost";
-import NumberOfPostTitle from "./NumberOfPostTitle";
-import CreateNewPost from "./CreateNewPost";
-import { posts } from "../models/posts.model";
-import { notifyUser } from "../features/notifyUser";
-import "./PostsList.css";
+import data from "../../store/data.json";
+import SinglePost from "../singlePost/SinglePost";
+import NumberOfPosts from "../numberOfPost/NumberOfPosts";
+import CreateNewPost from "../createNewPost/CreateNewPost";
+import { Post } from "../../models/Post.model";
+import { notifyUser } from "../../utils/notifyUser";
+import "./postsList.css";
 
 const PostsList: React.FC = () => {
-  const [postsList, setPostsList] = useState<posts[]>(data);
+  const [postsList, setPostsList] = useState<Post[]>(data);
 
   const deletePostHandler = (postId: number): void => {
     setPostsList((prevPosts) => {
@@ -18,7 +18,7 @@ const PostsList: React.FC = () => {
   };
 
   const addPostHandler = (title: string, description: string): void => {
-    const createPost: posts = {
+    const createPost: Post = {
       id: postsList.length + 1 + Math.random(),
       title: title,
       description: description,
@@ -30,7 +30,7 @@ const PostsList: React.FC = () => {
   };
 
   const postLikeHandler = (postId: number): void => {
-    let newValue: posts[] = postsList.map((post) => {
+    let newValue: Post[] = postsList.map((post) => {
       if (post.id === postId) {
         ++post.like;
         return post;
@@ -42,7 +42,7 @@ const PostsList: React.FC = () => {
   };
 
   const postUnlikeHandler = (postId: number): void => {
-    let newValue: posts[] = postsList.map((post) => {
+    let newValue: Post[] = postsList.map((post) => {
       if (post.id === postId) {
         --post.unlike;
         return post;
@@ -56,7 +56,7 @@ const PostsList: React.FC = () => {
   return (
     <div className="posts-container">
       <h1>#2</h1>
-      <NumberOfPostTitle numberOfPosts={postsList.length} />
+      <NumberOfPosts numberOfPosts={postsList.length} />
 
       {postsList.map((post) => {
         return (
